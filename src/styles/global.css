@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+.read-more {
+    display: inline-block;
+    position: relative;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    overflow: hidden;
+    padding: 5px 10px;
+  }
+  
+  /* Small initial line on the left */
+  .read-more::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -15px;
+    width: 15px;
+    height: 1px;
+    background-color: white;
+    transition: width 0.5s ease-in-out, left 0.5s ease-in-out;
+  }
+  
+  /* Strike-through effect (Initially hidden below the text) */
+  .read-more::after {
+    content: "";
+    position: absolute;
+    bottom: -2px; /* Below the text */
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: white;
+    transition: width 0.5s ease-in-out, bottom 0.5s ease-in-out;
+  }
+  
+  /* Hidden text initially */
+  .read-more span {
+    display: inline-block;
+    position: relative;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  }
+  
+  /* Hover the entire card instead of just the .read-more */
+  .card:hover .read-more::before {
+    width: 0;  /* Remove small left-side line */
+  }
+  
+  .card:hover .read-more::after {
+    width: 100%; /* Strike-through line expands */
+    bottom: 0; /* Moves up to cross the text */
+  }
+  
+  .card:hover .read-more span {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  /* After animation, keep a small right-side line */
+  .card:hover .read-more::after {
+    width: calc(100% - 15px);  /* Leaves a small line on the right */
+  }
+  .card:hover .card-img {
+    transform: scale(1.05);
+  }
+  
